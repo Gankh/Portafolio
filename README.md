@@ -15,13 +15,6 @@ Página de una sola pantalla con varias secciones, hecha con HTML5, CSS3, Bootst
 │   └── img/            Logos, banner, fotos y certificado
 └── README.md
 ```
-
-## Cómo verlo
-
-1. Clona el repositorio o descarga la carpeta.
-2. Abre `index.html` con doble clic, o usa una extensión como *Live Server* en VS Code.
-3. Necesitas conexión a internet: Bootstrap, los íconos y la tipografía se cargan desde CDN.
-
 ## Secciones
 
 | Sección | `id` | Contenido |
@@ -39,12 +32,6 @@ Cada sección del menú ocupa la pantalla completa, excepto Sobre mí, que se aj
 
 ## Personalización
 
-### Datos personales
-En `index.html` están el nombre, el correo, la dirección, el teléfono y el número de WhatsApp (`wa.me/56…`). Cámbialos ahí.
-
-### Redes sociales
-Los tres íconos del hero (Instagram, GitHub y LinkedIn) están en `.social-btn`. Mientras tengan `href="#"`, no llevan a ningún perfil: reemplaza `#` por la URL de cada uno.
-
 ### Imágenes
 | Archivo | Dónde aparece |
 |---|---|
@@ -59,20 +46,9 @@ Los tres íconos del hero (Instagram, GitHub y LinkedIn) están en `.social-btn`
 ### Currículum
 Coloca tu PDF en `assets/cv.pdf`. El botón de descarga de la foto y el enlace del CV ya apuntan a ese archivo (pendiente).
 
-### Habilidades
-Cada tarjeta tiene el porcentaje en dos lugares. Cámbialos juntos:
-
-```html
-<div class="skill-card" style="--value: 80;">
-  <div class="skill-value">80<span>%</span></div>
-  <div class="skill-label">Python</div>
-</div>
-```
-
 ### Colores y temas
 Los colores base están en `:root` en `css/styles.css`. Los seis temas del selector están en la sección 5 de `js/main.js`, en el arreglo `THEMES`. Cada tema define las mismas variables (`--bg-dark`, `--surface`, `--text`, `--accent`, etc.), así que para añadir uno basta con copiar una entrada y cambiar sus valores.
 
-El tema elegido se guarda en el navegador con `localStorage`.
 
 ### Formulario de contacto
 `js/main.js` valida el formulario y muestra un mensaje de confirmación, pero no envía los datos a ningún lado. Para recibir los mensajes, conecta el formulario con un servicio como Formspree o con tu propio backend en el evento `submit`.
@@ -91,11 +67,6 @@ El tema elegido se guarda en el navegador con `localStorage`.
 - Respeta `prefers-reduced-motion`: sin animaciones ni scroll suave para quien lo pida.
 - Los estados de foco son visibles (`:focus-visible`).
 - Cada imagen tiene texto `alt`.
-
-## Publicarlo
-
-- **GitHub Pages**: en *Settings → Pages*, elige la rama `main` y la carpeta `/ (root)`. El sitio queda en `https://gankh.github.io/Portafolio/`.
-- **Netlify** o **Vercel**: arrastra la carpeta al panel y obtienes un enlace al instante.
 
 ## Créditos
 
