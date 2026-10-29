@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gabriel Benavides · Portafolio</title>
+  <meta name="description" content="Portafolio de Gabriel Benavides, Ingeniero en Informática.">
+
+  <!-- Google Fonts: JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Estilos propios (van después de Bootstrap para poder sobrescribirlo) -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="90" tabindex="0">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar navbar-expand-lg fixed-top site-nav" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand logo" href="#home" aria-label="Inicio">
+        <img src="assets/img/logo%20solo%20letras.png" alt="Logo de Gabriel Zúñiga" class="logo-img">
+      </a>
+
+      <button id="themeToggle" class="btn theme-toggle ms-auto order-lg-last" type="button"
+              aria-controls="themePanel" aria-expanded="false" aria-label="Cambiar colores" title="Cambiar colores">
+        <i class="bi bi-brush"></i>
+      </button>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <i class="bi bi-list fs-2"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== TEMAS DE COLOR ===================== -->
+  <div class="theme-panel" id="themePanel">
+    <div class="container">
+      <div class="theme-options" id="themeOptions"></div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <header class="hero section-dark" id="home">
+      <span class="hero-letter" aria-hidden="true">G</span>
+
+      <div class="container position-relative">
+        <div class="row align-items-center min-vh-100 py-6">
+          <div class="col-lg-6 order-2 order-lg-1 mt-5 mt-lg-0">
+            <p class="eyebrow text-uppercase mb-2">Hola, soy</p>
+            <h1 class="display-4 fw-semibold mb-1">Gabriel Zúñiga</h1>
+            <p class="text-secondary mb-4">Estudiante de Ingeniero en Informática · Desarrollo web</p>
+
+            <a href="mailto:Chef.gabriel.z.benavides@gmail.com" class="accent-link d-block fs-5 mb-2">Chef.gabriel.z.benavides@gmail.com</a>
+            <address class="text-secondary mb-4">
+              Andres Bellos, Peumo<br>
+              Chile
+            </address>
+
+            <div class="d-flex gap-2">
+              <a class="social-btn" href="https://www.instagram.com/gaboasdas" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a class="social-btn" href="https://github.com/Gankh" aria-label="GitHub"><i class="bi bi-github"></i></a>
+              <a class="social-btn" href="https://www.linkedin.com/in/gabriel-zu%C3%B1iga-b3ba73256/" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 order-1 order-lg-2 text-center hero-visual">
+            <a href="assets/cv.pdf" download class="profile-flip" aria-label="Descargar CV de Gabriel Zúñiga">
+              <span class="profile-flip-inner">
+                <img src="assets/img/foto-portafolio.jpg" alt="" class="profile-flip-front">
+                <img src="assets/img/img-cv.jfif" alt="" class="profile-flip-back">
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== SOBRE MÍ ===================== -->
+    <section class="section-darker py-6" id="about">
+      <div class="container">
+        <div class="section-title text-center mb-5">
+          <span class="title-dot"></span>
+          <p class="eyebrow text-uppercase mb-1">Quién soy</p>
+          <h2 class="fw-semibold">Sobre mi currículum</h2>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <ul class="list-unstyled info-list mb-0">
+              <li><span>Correo</span><strong>chef.gabriel.z.benavides@gmail.com</strong></li>
+              <li><span>Teléfono</span><strong>+56 931382528</strong></li>
+              <li><span>Disponibilidad</span><strong>Full time</strong></li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <figure class="about-figure h-100 mb-0 d-flex flex-column align-items-center justify-content-center gap-4">
+              <a href="assets/img/aprobacion-modulos-cursos-b-learning-fundamentos-desarrollo-web-g25-12971.png" target="_blank" rel="noopener">
+                <img src="assets/img/desafiolatam-sin-fondo.png" alt="Logo Desafío Latam, ver certificado" class="about-logo">
+              </a>
+              <img src="assets/img/cropped-cropped-banner_ipg_300x113.webp" alt="Banner IPG" class="about-logo">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HABILIDADES ===================== -->
+    <section class="section-darker pb-6" id="services">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-6 col-lg-3">
+            <div class="skill-card" style="--value: 50;">
+              <div class="skill-value">60<span>%</span></div>
+              <div class="skill-label">html,css</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="skill-card" style="--value: 75;">
+              <div class="skill-value">45<span>%</span></div>
+              <div class="skill-label">bootstrap</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="skill-card" style="--value: 38;">
+              <div class="skill-value">38<span>%</span></div>
+              <div class="skill-label">Claucode,opencode</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="skill-card" style="--value: 63;">
+              <div class="skill-value">63<span>%</span></div>
+              <div class="skill-label">ux-ui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROYECTOS ===================== -->
+    <section class="section-dark py-6" id="portfolio">
+      <div class="container">
+        <div class="section-title text-center mb-5">
+          <span class="title-dot"></span>
+          <p class="eyebrow text-uppercase mb-1">Trabajo reciente</p>
+          <h2 class="fw-semibold">Proyectos</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="project-card h-100">
+              <img src="assets/img/proyecto-1.jpg" alt="Captura del sistema de reservas" class="img-fluid">
+              <div class="p-4">
+                <span class="badge rounded-pill text-bg-dark mb-2">Web</span>
+                <h3 class="h5">Sistema de reservas</h3>
+                <p class="text-secondary small mb-0">Agenda en línea con recordatorios por correo.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="project-card h-100">
+              <img src="assets/img/proyecto-2.jpg" alt="Captura de la API de inventario" class="img-fluid">
+              <div class="p-4">
+                <span class="badge rounded-pill text-bg-dark mb-2">API</span>
+                <h3 class="h5">API de inventario</h3>
+                <p class="text-secondary small mb-0">Servicio REST con autenticación JWT y documentación.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="project-card h-100">
+              <img src="assets/img/proyecto-3.jpg" alt="Gráfica de consumo energético" class="img-fluid">
+              <div class="p-4">
+                <span class="badge rounded-pill text-bg-dark mb-2">Datos</span>
+                <h3 class="h5">Consumo energético</h3>
+                <p class="text-secondary small mb-0">Análisis de series de tiempo con visualizaciones.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===================== CONTACTO ===================== -->
+    <section class="section-darker py-6" id="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="section-title text-center mb-4">
+              <span class="title-dot"></span>
+              <p class="eyebrow text-uppercase mb-1">Escríbeme</p>
+              <h2 class="fw-semibold">Trabajemos juntos</h2>
+            </div>
+
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" required>
+                  <div class="invalid-feedback">Escribe tu nombre.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="correo">Correo</label>
+                  <input type="email" class="form-control" id="correo" required>
+                  <div class="invalid-feedback">Escribe un correo válido.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="mensaje">Mensaje</label>
+                  <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+                  <div class="invalid-feedback">Escribe un mensaje.</div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-accent rounded-pill px-4">Enviar mensaje</button>
+                </div>
+              </div>
+              <p class="form-status small mt-3 mb-0" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-secondary">
+      <span>© <span id="year"></span> Gabriel Benavides. Hecho con HTML, CSS y Bootstrap.</span>
+      <a href="#home" class="link-body-emphasis text-decoration-none">Volver arriba <i class="bi bi-arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JS (incluye Popper) -->
+  <!-- Botón flotante de WhatsApp: visible en todas las secciones -->
+  <a class="whatsapp-float" href="https://wa.me/56931382528" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" title="Escribir por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

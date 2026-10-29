@@ -1,0 +1,311 @@
+/* ---------- 1. Variables de diseño ---------- */
+:root {
+  --bg-dark: #2b2c2f;        /* grafito: fondo del hero y secciones principales */
+  --bg-darker: #161617;      /* negro grafito: fondo alterno */
+  --surface: #202123;        /* tarjetas y bloques */
+  --line: #3a3b3f;           /* bordes sutiles */
+  --text: #f5efe1;           /* crema claro para texto */
+  --muted: #b5ae9d;          /* crema apagado para texto secundario */
+  --accent: #e6d9b8;         /* crema principal */
+  --accent-soft: #f5efe1;    /* crema claro para bordes y destacados */
+  --on-accent: #161617;      /* texto sobre fondos crema */
+  --radius: 14px;
+
+  --bs-body-bg: var(--bg-darker);
+  --bs-body-color: var(--text);
+  --bs-body-font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --bs-link-color: var(--accent);
+  --bs-secondary-color: var(--muted);
+  --bs-emphasis-color: var(--text);
+  --hero-letter-stroke: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ---------- 2. Base ---------- */
+/* Al ir a una sección desde el menú, queda justo debajo de la barra fija */
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  font-family: var(--bs-body-font-family);
+  background: var(--bg-darker);
+  color: var(--text);
+  overflow-x: hidden;
+}
+h1, h2, h3 { letter-spacing: -0.01em; }
+img { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+
+.section-dark { background: var(--bg-dark); }
+.section-darker { background: var(--bg-darker); }
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+
+/* Cada sección del menú ocupa la pantalla completa, así no se mezclan al navegar */
+#home, #about, #portfolio, #contact {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* El hero ya tiene su propia fila de 100vh: se quita para que no sume altura extra */
+#home .min-vh-100 { min-height: auto; }
+/* Sobre mí no ocupa toda la pantalla, para que las tarjetas de habilidades suban y se vean al entrar */
+#about { min-height: auto; padding-bottom: 2rem; }
+/* Extiende un poco el fondo bajo las tarjetas: no se mueven, solo sube el espacio inferior */
+#services { padding-top: 0; }
+.eyebrow { color: var(--muted); font-size: .8rem; letter-spacing: .18em; font-weight: 600; }
+.accent-link { color: var(--accent); font-weight: 600; text-decoration: none; }
+.accent-link:hover { color: var(--accent-soft); }
+
+/* ---------- 3. Navbar ---------- */
+.site-nav {
+  padding-block: 1.1rem;
+  transition: background .3s ease, padding .3s ease;
+}
+.site-nav.scrolled {
+  background: color-mix(in srgb, var(--bg-darker) 92%, transparent);
+  backdrop-filter: blur(8px);
+  padding-block: .6rem;
+}
+.logo { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--text) !important; }
+.logo-img { display: block; height: 64px; width: auto; }
+.logo-mark {
+  display: grid; place-items: center; width: 38px; height: 38px;
+  border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 1.1rem;
+}
+.site-nav .nav-link { color: var(--text) !important; font-weight: 500; font-size: .95rem; }
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active { color: var(--accent) !important; }
+.btn-cv { font-size: .9rem; font-weight: 500; }
+.btn-cv:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.site-nav .navbar-toggler { color: var(--text); }
+
+/* Botón de brocha y panel de temas */
+.theme-toggle {
+  display: grid; place-items: center;
+  width: 42px; height: 42px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%;
+  color: var(--text); font-size: 1.1rem;
+  transition: border-color .2s, color .2s;
+}
+.theme-toggle:hover, .theme-toggle[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+/* Se desliza y se desvanece con transform/opacity: así la animación es fluida en ambos sentidos */
+.theme-panel {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1040;
+  padding: 1.25rem 0 1.5rem;
+  background: var(--bg-darker);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease, visibility 0s linear .45s;
+}
+.theme-panel.open {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  transition: transform .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease, visibility 0s;
+}
+.theme-options {
+  display: flex; gap: .75rem; justify-content: center;
+  overflow-x: auto; padding: .25rem .25rem .75rem;
+}
+.theme-option {
+  flex: 0 0 auto; min-width: 150px;
+  padding: .75rem .9rem;
+  border: 2px solid var(--line); border-radius: 10px;
+  font: inherit; font-size: .8rem; text-align: center;
+  cursor: pointer; transition: border-color .2s, transform .2s;
+}
+.theme-option:hover { transform: translateY(-2px); }
+.theme-option.active { border-color: var(--accent); }
+.theme-name { display: block; font-weight: 600; margin-bottom: .5rem; }
+.theme-swatches { display: flex; justify-content: center; gap: .35rem; }
+.theme-swatches span { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(128, 128, 128, .4); }
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-dark) 85%, transparent), color-mix(in srgb, var(--bg-dark) 95%, transparent)),
+    var(--bg-dark);
+  padding-top: 5rem;
+}
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+.hero-letter {
+  position: absolute;
+  left: 18%;
+  top: 14%;
+  font-size: min(32vw, 420px);
+  line-height: 1;
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--hero-letter-stroke);
+  pointer-events: none;
+  user-select: none;
+}
+.hero-visual { position: relative; }
+/* La foto es un enlace de descarga: gira al pasar el cursor y muestra "Descargar CV" */
+.profile-flip {
+  position: relative;
+  top: -3rem;
+  z-index: 2;
+  display: block;
+  width: min(400px, 80vw);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  perspective: 1000px;
+  border-radius: 50%;
+  color: var(--text);
+  text-decoration: none;
+}
+.profile-flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.4, .2, .2, 1);
+}
+.profile-flip:hover .profile-flip-inner,
+.profile-flip:focus-visible .profile-flip-inner { transform: rotateY(180deg); }
+.profile-flip-front,
+.profile-flip-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid var(--accent);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.profile-flip-front { object-fit: cover; object-position: center top; background: var(--surface); }
+.profile-flip-back {
+  object-fit: cover; object-position: center;
+  background: var(--surface);
+  transform: rotateY(180deg);
+}
+.social-btn {
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--text);
+  text-decoration: none; transition: background .2s, border-color .2s;
+}
+.social-btn:hover, .social-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* ---------- 5. Títulos de sección ---------- */
+.section-title { position: relative; }
+.section-title h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin: 0; }
+.title-dot {
+  display: block; width: 22px; height: 22px; margin: 0 auto .75rem;
+  border-radius: 50%; border: 4px solid var(--accent);
+}
+
+/* ---------- 6. Información personal ---------- */
+.info-list li {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding: 1rem 1.25rem; margin-bottom: .75rem;
+  background: var(--surface); border-radius: 10px;
+  font-size: .95rem;
+}
+.info-list span { color: var(--muted); }
+.info-list strong { font-weight: 500; text-align: right; overflow-wrap: anywhere; }
+
+.about-figure {
+  overflow: hidden; border-radius: var(--radius); min-height: 300px;
+}
+.about-figure img { object-fit: cover; background: var(--surface); }
+.about-figure .about-logo { display: block; width: min(100%, 320px); height: 120px; object-fit: contain; background: transparent; }
+
+/* ---------- 7. Tarjetas de habilidades ---------- */
+/* pb-6 no existe en el CSS: sin este espacio las tarjetas quedaban pegadas a Proyectos */
+#services { padding-bottom: 10rem; }
+.skill-card {
+  position: relative;
+  height: 100%;
+  padding: 2.25rem 1rem;
+  text-align: center;
+  border: 3px solid var(--accent-soft);
+  border-radius: 6px;
+  background: var(--bg-darker);
+  overflow: hidden;
+}
+/* Barra de progreso en el borde superior, según --value */
+.skill-card::before {
+  content: "";
+  position: absolute; top: -3px; left: -3px;
+  height: 3px;
+  width: calc(var(--value) * 1%);
+  background: var(--accent);
+}
+.skill-value { font-size: 2.6rem; font-weight: 700; line-height: 1.1; }
+.skill-value span { font-size: 1.2rem; font-weight: 500; }
+.skill-label { color: var(--muted); font-size: .85rem; margin-top: .25rem; }
+
+/* ---------- 8. Proyectos ---------- */
+.project-card, .blog-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .25s ease, border-color .25s ease;
+}
+.project-card:hover, .blog-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.project-card img { display: block; aspect-ratio: 4 / 3; width: 100%; object-fit: cover; background: var(--line); }
+.project-card .badge { background: var(--accent) !important; color: var(--on-accent) !important; }
+.blog-card h3 { line-height: 1.45; }
+
+/* ---------- 9. Formulario y botones ---------- */
+.contact-form .form-label { color: var(--muted); font-size: .9rem; }
+.contact-form .form-control {
+  background: var(--surface); border: 1px solid var(--line); color: var(--text);
+  border-radius: 10px; padding: .75rem 1rem;
+}
+.contact-form .form-control:focus {
+  background: var(--surface); color: var(--text);
+  border-color: var(--accent); box-shadow: 0 0 0 .2rem color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.btn-accent { background: var(--accent); color: var(--on-accent); border: none; font-weight: 500; }
+.btn-accent:hover { background: var(--accent-soft); color: var(--on-accent); }
+
+/* ---------- 10. Pie de página ---------- */
+.site-footer { background: var(--bg-dark); border-top: 1px solid var(--line); }
+
+/* ---------- 11. Responsive ---------- */
+@media (max-width: 991.98px) {
+  .hero { padding-top: 6rem; }
+  .hero-visual { margin-bottom: 1rem; }
+  .profile-flip { width: min(320px, 75vw); top: 0; }
+  .hero-letter { font-size: 60vw; opacity: .5; }
+  .navbar-collapse { padding: 1rem 0; }
+  .btn-cv { margin-top: .75rem; align-self: flex-start; }
+}
+@media (max-width: 575.98px) {
+  .py-6 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .info-list li { flex-direction: column; gap: .25rem; }
+  .info-list strong { text-align: left; }
+}
+
+/* ---------- 11b. Botón flotante de WhatsApp ---------- */
+.whatsapp-float {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 1030;
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; color: #fff; font-size: 1.9rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  text-decoration: none;
+  animation: whatsapp-float 2.4s ease-in-out infinite;
+  transition: transform .2s ease;
+}
+.whatsapp-float:hover { transform: scale(1.08); color: #fff; }
+@keyframes whatsapp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---------- 12. Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
